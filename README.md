@@ -45,4 +45,4 @@ that outputs interactive media for VR display and future companion experiences.
 ## ✨ Why "Spindle"?
 
 Because stories are threads.  
-And Spindle weaves them into something immersive, dynamic, and alive.
+And Spindle weaves them into something magnificent.
