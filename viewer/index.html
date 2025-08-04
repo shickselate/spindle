@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Fusion Shift 180° VR Viewer</title>
+    <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
+    <script src="image_list.js"></script>
+
+    <script>
+      let currentIndex = 0;
+
+      function updateImage() {
+        const base = imageList[currentIndex];
+        const imagePath = `assets/images/${base}.png`;
+        const textPath = `stories/${base}.txt`;
+
+        const skyEl = document.querySelector('#skySphere');
+        const panelEl = document.querySelector('#story-panel');
+
+        // Update 180 image
+        skyEl.setAttribute('material', 'src', imagePath);
+
+        // Update floating text panel
+        fetch(textPath)
+          .then(response => response.text())
+          .then(text => {
+            panelEl.setAttribute('text', 'value', text.trim());
+          })
+          .catch(err => {
+            console.warn(`⚠️ Failed to load story text for ${base}`, err);
+            panelEl.setAttribute('text', 'value', '(No story available)');
+          });
+      }
+
+      function nextImage() {
+        currentIndex = (currentIndex + 1) % imageList.length;
+        updateImage();
+      }
+
+      function prevImage() {
+        currentIndex = (currentIndex - 1 + imageList.length) % imageList.length;
+        updateImage();
+      }
+
+      AFRAME.registerComponent('pinch-advance', {
+        init: function () {
+          this.el.addEventListener('pinchstarted', evt => {
+            const hand = this.el.getAttribute('hand-tracking-controls').hand;
+            if (hand === 'right') {
+              nextImage();
+            } else if (hand === 'left') {
+              prevImage();
+            }
+          });
+        }
+      });
+
+      AFRAME.registerComponent('palm-hint-toggle', {
+        schema: { threshold: { type: 'number', default: 0.6 } },
+        tick: function () {
+          const hand = this.el.components['hand-tracking-controls'].data.hand;
+          const xrSession = this.el.sceneEl.renderer.xr.getSession();
+          const xrFrame = this.el.sceneEl.frame;
+          const refSpace = this.el.sceneEl.renderer.xr.getReferenceSpace();
+
+          if (!xrSession || !xrFrame || !refSpace) return;
+
+          for (const inputSource of xrSession.inputSources) {
+            if (inputSource.hand && inputSource.handedness === hand) {
+              const wrist = xrFrame.getJointPose(inputSource.hand.get('wrist'), refSpace);
+              const index = xrFrame.getJointPose(inputSource.hand.get('index-finger-metacarpal'), refSpace);
+              const pinky = xrFrame.getJointPose(inputSource.hand.get('pinky-finger-metacarpal'), refSpace);
+              if (!wrist || !index || !pinky) return;
+
+              const v1 = {
+                x: index.transform.position.x - wrist.transform.position.x,
+                y: index.transform.position.y - wrist.transform.position.y,
+                z: index.transform.position.z - wrist.transform.position.z
+              };
+              const v2 = {
+                x: pinky.transform.position.x - wrist.transform.position.x,
+                y: pinky.transform.position.y - wrist.transform.position.y,
+                z: pinky.transform.position.z - wrist.transform.position.z
+              };
+
+              const nx = v1.y * v2.z - v1.z * v2.y;
+              const ny = v1.z * v2.x - v1.x * v2.z;
+              const nz = v1.x * v2.y - v1.y * v2.x;
+              const mag = Math.sqrt(nx * nx + ny * ny + nz * nz);
+              const normal = { x: nx / mag, y: ny / mag, z: nz / mag };
+
+              const hintVisible = normal.y > this.data.threshold;
+              const panel = document.querySelector('#story-panel');
+              if (panel) panel.setAttribute('visible', hintVisible);
+            }
+          }
+        }
+      });
+
+      AFRAME.registerComponent('track-hand-position', {
+        schema: { joint: { default: 'wrist' } },
+        tick: function () {
+          const hand = this.el.components['hand-tracking-controls'].data.hand;
+          const xrSession = this.el.sceneEl.renderer.xr.getSession();
+          const xrFrame = this.el.sceneEl.frame;
+          const refSpace = this.el.sceneEl.renderer.xr.getReferenceSpace();
+
+          if (!xrSession || !xrFrame || !refSpace) return;
+
+          for (const inputSource of xrSession.inputSources) {
+            if (inputSource.hand && inputSource.handedness === hand) {
+              const joint = inputSource.hand.get(this.data.joint);
+              if (!joint) return;
+              const pose = xrFrame.getJointPose(joint, refSpace);
+              if (pose) {
+                this.el.object3D.position.set(
+                  pose.transform.position.x,
+                  pose.transform.position.y,
+                  pose.transform.position.z
+                );
+              }
+            }
+          }
+        }
+      });
+
+      AFRAME.registerComponent('follow-wrist-position', {
+        schema: {
+          offset: { type: 'vec3', default: { x: 0, y: 0.15, z: -0.1 } }
+        },
+
+        init: function () {
+          this.tracker = document.querySelector('#right-wrist-tracker');
+        },
+
+        tick: function () {
+          if (!this.tracker) return;
+
+          const pos = this.tracker.object3D.position;
+          const offset = this.data.offset;
+
+          this.el.object3D.position.set(
+            pos.x + offset.x,
+            pos.y + offset.y,
+            pos.z + offset.z
+          );
+        }
+      });
+
+      window.addEventListener('load', () => {
+        if (imageList && imageList.length > 0) {
+          updateImage();
+        }
+      });
+    </script>
+  </head>
+
+  <body>
+    <a-scene background="color: black" vr-mode-ui="enabled: true" renderer="antialias: true">
+      <!-- 180° image viewer -->
+      <a-entity id="skySphere"
+        geometry="primitive: sphere; radius: 20; thetaStart: 30; thetaLength: 120; phiStart: 45; phiLength: 250"
+        material="shader: flat; side: back"
+        scale="-1 1 1"
+        rotation="0 180 0"
+        position="0 1.6 0">
+      </a-entity>
+
+      <!-- Right hand visual -->
+      <a-entity hand-tracking-controls="hand: right" position="0 0 0" visible="true"></a-entity>
+
+      <!-- Left hand controls -->
+      <a-entity hand-tracking-controls="hand: left" pinch-advance visible="true"></a-entity>
+
+      <!-- Tracker for right hand -->
+      <a-entity id="right-wrist-tracker"
+                hand-tracking-controls="hand: right; model: false"
+                pinch-advance
+                palm-hint-toggle
+                track-hand-position>
+      </a-entity>
+
+      <!-- Floating panel -->
+      <a-entity id="story-panel"
+                follow-wrist-position="offset: 0 0.2 -0.15"
+                rotation="0 -45 0"
+                billboard-to-camera
+                text="value: Loading...; align: center; color: white; width: 0.35; wrapCount: 50; line-height: 60"
+                geometry="primitive: plane; height: 0.3; width: 0.4"
+                material="color: black; opacity: 0.5"
+                visible="false">
+      </a-entity>
+
+      <!-- Camera -->
+      <a-entity camera look-controls position="0 1.6 0"></a-entity>
+    </a-scene>
+  </body>
+</html>

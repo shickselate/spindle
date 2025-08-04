@@ -1,0 +1,16 @@
+const imageList = [
+  "20250803_204414_Jalen_Zirra",
+  "20250803_204414_Sael_Zirra",
+  "20250803_204419_Ilyr_Ilyr",
+  "20250803_204419_Sael_Doran",
+  "20250803_204419_Talon_Brax",
+  "20250803_222803_bombardment_07",
+  "20250803_222803_colonisation_01",
+  "20250803_222803_election_06",
+  "20250803_222803_espionage_03",
+  "20250803_222803_fleetbattle_02",
+  "20250803_222803_resourcelog_05",
+  "20250803_222803_tradediplomacy_04",
+  "20250803_222803_tradediplomacy_0_00001_",
+  "20250803_222803_tradediplomacy_0_00002_",
+];
