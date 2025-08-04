@@ -1,0 +1,33 @@
+# --- Python ---
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+*.log
+
+# --- Environments ---
+.env
+.venv/
+venv/
+env/
+
+# --- OS / Editor junk ---
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+
+# --- Viewer assets ---
+viewer/assets/images/
+viewer/*.pem
+
+# --- Storygen outputs ---
+storygen/images/
+storygen/workflows/*.ckpt
+storygen/scripts/__pycache__/
+
+# --- Misc ---
+*.bak
+*.tmp
