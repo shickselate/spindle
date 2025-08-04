@@ -1,0 +1,19 @@
+# Python cache
+__pycache__/
+*.pyc
+
+# Editor/project files
+.vscode/
+.idea/
+
+# Environment and config
+.env
+
+# Generated or large files
+storygen/images/
+storygen/workflows/*.ckpt
+viewer/assets/images/
+
+# OS files
+.DS_Store
+Thumbs.db
