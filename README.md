@@ -26,7 +26,7 @@ that outputs interactive media for VR display and future companion experiences.
    - `gen_news_from_rawstory.py`  calls Ollama and creates a 100 word story from the rawstory→ populates `newstory/`
    - `gen_prompts_from_news.py` calls Ollama and generates a image generation prompt from newstory → populates `image_prompts/`
    - `generate_images.py` → creates images in `images/`
-3. feed image prompts into ComfyUI workflow `BaseWorkflow_cleaned.py` to generate images, and then expand these to wide screen (2048 x 1024) using `FluxOutpaint.json`
+3. feed image prompts into ComfyUI workflow `BaseWorkflow_cleaned.py` to generate images, and then expand these to wide screen (2048 x 1024) using `flux_fill_outpaint.json`
 4. Open `viewer/index.html` in a WebXR-compatible browser or headset
 5. Pinch fingers to explore scenes, turn right hand up to read newstories in VR 
 
