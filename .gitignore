@@ -31,3 +31,5 @@ storygen/scripts/__pycache__/
 # --- Misc ---
 *.bak
 *.tmp
+*.pem
+
