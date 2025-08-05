@@ -36,11 +36,6 @@ that outputs interactive media for VR display and future companion experiences.
 
 ---
 
-![Antimatter Crisis at Karnis](https://github.com/shickselate/spindle/raw/main/media/screenshot-20250805-001430.jpg)
-
-*Live telemetry flickers in the control room as a crisis unfolds at the Karnis Refinery —  
-antimatter reserves drop to critical levels, triggering emergency protocols.*
-
 ---
 
 
@@ -59,3 +54,13 @@ antimatter reserves drop to critical levels, triggering emergency protocols.*
 
 Because stories are threads.  
 And Spindle weaves them into something magnificent.
+
+---
+
+![Antimatter Crisis at Karnis](https://github.com/shickselate/spindle/raw/main/media/screenshot-20250805-001430.jpg)
+
+*This is an example of Spindle's localised, gameplay-driven news system:  
+a resource alert triggered by a real in-game event — the Karnis Refinery's antimatter reserves  
+have dropped to critical levels, and may require your intervention.*
+
+---
