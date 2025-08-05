@@ -18,7 +18,7 @@ that outputs interactive media for VR display and future companion experiences.
 
 ![Spindle VR Experience](https://github.com/shickselate/spindle/raw/main/media/screenshot-20250805-000412.jpg)
 
-*A captured moment inside Spindle: a celestial event that made the news. Above above the user’s own hand floats a short news story above a distant moonbase.*
+*A captured moment inside Spindle: a celestial event that made the news. A view from a distant moonbase. above the user’s own hand floats a short news flash.*
 
 
 ---
