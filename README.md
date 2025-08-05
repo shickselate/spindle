@@ -36,6 +36,12 @@ that outputs interactive media for VR display and future companion experiences.
 
 ---
 
+![Skirmish in Gamma Verge](https://github.com/shickselate/spindle/raw/main/media/screenshot-20250805-000316.jpg)
+
+*Spindle’s war correspondence system in action — this in-universe news report was generated  
+after a space battle broke out in the Gamma Verge, driven by real gameplay events.*
+
+
 ---
 
 
@@ -57,10 +63,6 @@ And Spindle weaves them into something magnificent.
 
 ---
 
-![Antimatter Crisis at Karnis](https://github.com/shickselate/spindle/raw/main/media/screenshot-20250805-001430.jpg)
 
-*This is an example of Spindle's localised, gameplay-driven news system:  
-a resource alert triggered by a real in-game event — the Karnis Refinery's antimatter reserves  
-have dropped to critical levels, and may require your intervention.*
 
 ---
