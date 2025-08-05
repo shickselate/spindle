@@ -18,7 +18,7 @@ that outputs interactive media for VR display and future companion experiences.
 
 ![Spindle VR Experience](https://github.com/shickselate/spindle/raw/main/media/screenshot-20250805-000412.jpg)
 
-*A captured moment inside Spindle: the user’s own hand floats a news story above a distant moonbase,  while twin eclipsing moons cast light across the horizon.*
+*A captured moment inside Spindle: a celestial event that made the news. Above above the user’s own hand floats a short news story above a distant moonbase.*
 
 
 ---
@@ -27,7 +27,7 @@ that outputs interactive media for VR display and future companion experiences.
 
 1. Run `main.py` calls `narrativeBuild.py`, `characterBuilder.py` and `eventGenerator.pt` to craft several raw story text file to `storygen/rawstory/`
 2. Run 
-   - `gen_news_from_rawstory.py`  calls Ollama and creates a 100 word story from the rawstory→ populates `newstory/`
+   - `gen_news_from_rawstory.py`  calls and LLM to creates a 100 word story from the game output, populating `newstory/`
    - `gen_prompts_from_news.py` calls Ollama and generates a image generation prompt from newstory → populates `image_prompts/`
    - `generate_images.py` → creates images in `images/`
 3. feed image prompts into ComfyUI workflow `BaseWorkflow_cleaned.py` to generate images, and then expand these to wide screen (2048 x 1024) using `flux_fill_outpaint.json`
