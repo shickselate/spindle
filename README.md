@@ -36,6 +36,14 @@ that outputs interactive media for VR display and future companion experiences.
 
 ---
 
+![Antimatter Crisis at Karnis](https://github.com/shickselate/spindle/raw/main/media/screenshot-20250805-001430.jpg)
+
+*Live telemetry flickers in the control room as a crisis unfolds at the Karnis Refinery —  
+antimatter reserves drop to critical levels, triggering emergency protocols.*
+
+---
+
+
 ## 🔮 Future Features
 
 - Character memory and recurrence tracking
@@ -43,6 +51,7 @@ that outputs interactive media for VR display and future companion experiences.
 - Depth-based stereoscopic image rendering
 - Live event ingestion from game server
 - Companion-mode playback and story arcs
+
 
 ---
 
