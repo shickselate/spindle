@@ -16,6 +16,10 @@ that outputs interactive media for VR display and future companion experiences.
 
 ---
 
+![Spindle VR Experience](https://github.com/shickselate/spindle/raw/main/media/screenshot-20250805-000412.jpg)
+
+*A captured moment inside Spindle: the user’s own hand floats a news story above a distant moonbase,  while twin eclipsing moons cast light across the horizon.*
+
 
 ---
 
