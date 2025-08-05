@@ -1,6 +1,6 @@
 # StoryGen
 
-![Jalen Zirra – Storybirth](https://github.com/shickselate/spindle/raw/main/storygen/image_prompts/20250803_204414_Jalen_Zirra.png)
+![Jalen Zirra – Storybirth](https://github.com/shickselate/spindle/blob/main/viewer/assets/images/20250803_204414_Jalen_Zirra.png)
 
 *Every story begins with a signal —  
 an event, a name, a ripple in the world.*
