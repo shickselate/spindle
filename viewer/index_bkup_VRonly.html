@@ -42,17 +42,6 @@
         updateImage();
       }
 
-      window.addEventListener('DOMContentLoaded', () => {
-        const prevBtn = document.getElementById('prevBtn');
-        const nextBtn = document.getElementById('nextBtn');
-
-        if (prevBtn && nextBtn) {
-          prevBtn.addEventListener('click', prevImage);
-          nextBtn.addEventListener('click', nextImage);
-        }
-      });
-
-
       AFRAME.registerComponent('pinch-advance', {
         init: function () {
           this.el.addEventListener('pinchstarted', evt => {
@@ -164,44 +153,10 @@
         }
       });
     </script>
-
-    <style>
-      #ui-controls {
-        position: absolute;
-        bottom: 20px;
-        width: 100%;
-        text-align: center;
-        z-index: 999;
-      }
-
-      #ui-controls button {
-        font-size: 2rem;
-        padding: 10px 20px;
-        margin: 0 15px;
-        background: rgba(0, 0, 0, 0.5);
-        color: white;
-        border: none;
-        border-radius: 10px;
-        cursor: pointer;
-      }
-
-      #ui-controls button:hover {
-        background: rgba(255, 255, 255, 0.2);
-      }
-    </style>
-
-
   </head>
 
   <body>
     <a-scene background="color: black" vr-mode-ui="enabled: true" renderer="antialias: true">
-
-      <div id="ui-controls">
-        <button id="prevBtn">←</button>
-        <button id="nextBtn">→</button>
-      </div>
-
-
       <!-- 180° image viewer -->
       <a-entity id="skySphere"
         geometry="primitive: sphere; radius: 20; thetaStart: 30; thetaLength: 120; phiStart: 45; phiLength: 250"
@@ -212,15 +167,10 @@
       </a-entity>
 
       <!-- Right hand visual -->
-      <a-entity hand-tracking-controls="hand: right"
-      material="color: #00ffee"
-      position="0 0 0"
-      visible="true"></a-entity>
+      <a-entity hand-tracking-controls="hand: right" position="0 0 0" visible="true"></a-entity>
 
       <!-- Left hand controls -->
-      <a-entity hand-tracking-controls="hand: left"
-        material="color: #00ffee"
-        pinch-advance visible="true"></a-entity>
+      <a-entity hand-tracking-controls="hand: left" pinch-advance visible="true"></a-entity>
 
       <!-- Tracker for right hand -->
       <a-entity id="right-wrist-tracker"
